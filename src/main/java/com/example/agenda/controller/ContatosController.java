@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,7 @@ import com.example.agenda.model.Contato;
 import com.example.agenda.service.ContatosService;
 
 import jakarta.validation.Valid;
-
+@CrossOrigin("http://localhost:5173")
 @RestController
 @RequestMapping("/contatos")
 public class ContatosController {
@@ -55,7 +56,7 @@ public class ContatosController {
     }
 
     @PostMapping
-    public ResponseEntity<ContatoResponseDTO> criarContato(@Valid @RequestBody ContatoRequestDTO data){
+    public ResponseEntity<ContatoResponseDTO> criarContato(@RequestBody @Valid ContatoRequestDTO data){
         Contato contato = service.criarContato(data);
 
         return ResponseEntity.ok(new ContatoResponseDTO(contato));

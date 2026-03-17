@@ -1,0 +1,42 @@
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border: 1px solid white;
+    border-radius: 8px;
+    gap: 10px;
+
+    .information {
+        width: 100%;
+    }
+
+    h2, p {
+        color: rgb(146, 155, 161);
+    }
+
+    .config{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        button{
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            transition-duration: 0.3s;
+
+            &:hover {
+                transform: scale(1.08);
+            }
+
+            svg{
+                height: 32px;
+                fill: rgb(212, 208, 157);
+            }
+
+            p{
+                font-weight: bold;
+                color: rgb(212, 208, 157);
+            }
+        }
+    }
+}

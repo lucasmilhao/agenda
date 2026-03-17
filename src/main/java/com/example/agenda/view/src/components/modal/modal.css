@@ -1,0 +1,25 @@
+h2 {
+    color: black;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.589);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .button-submit {
+        width: 300px;
+        height: 50px;
+        border-radius: 12px;
+    }
+
+    z-index: 999;
+}
