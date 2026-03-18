@@ -34,10 +34,14 @@ export function Cards({id, nome, telefone, email, dataNascimento} : CardProps) {
             <div className="config">
                 <button onClick={() => Swal.fire({
                     title:`Remover ${nome}?`,
+                    background: "#1c1c1c",
                     showDenyButton: true,
+                    color: "white",
+                    denyButtonText: "cancelar",
                     showConfirmButton: true,
-                    confirmButtonColor: "#51d630",
-                    confirmButtonText: "Excluir"
+                    confirmButtonColor: "#d63530",
+                    confirmButtonText: "Excluir",
+                    denyButtonColor: "#4cd630"
                     
                 }).then((result) => {
                     if(result.isConfirmed) deletarContato(id);
