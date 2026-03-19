@@ -17,6 +17,10 @@
   }
 }
 
+.input-pesquisar{
+  height: 40px;
+}
+
 .hero {
   position: relative;
 

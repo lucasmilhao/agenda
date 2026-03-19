@@ -49,7 +49,7 @@ public class ContatosController {
     }
 
     @PutMapping("{idContato}")
-    public ResponseEntity<ContatoResponseDTO> editarContato(@PathVariable Long idContato, @RequestBody ContatoRequestDTO data) {
+    public ResponseEntity<ContatoResponseDTO> editarContato(@PathVariable Long idContato, @RequestBody @Valid ContatoRequestDTO data) {
         Contato contato = service.editarContato(idContato, data);
 
         return ResponseEntity.ok(new ContatoResponseDTO(contato));
