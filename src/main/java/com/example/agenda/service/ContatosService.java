@@ -12,12 +12,14 @@ import com.example.agenda.dto.ContatoResponseDTO;
 import com.example.agenda.exceptions.ContatoExistenteException;
 import com.example.agenda.exceptions.ContatoNaoEncontradoException;
 import com.example.agenda.exceptions.ParametroInvalidoException;
+import com.example.agenda.framework.utils.FileOperations;
 import com.example.agenda.model.Contato;
 import com.example.agenda.repository.ContatoRepository;
 
 @Service
 public class ContatosService {
     
+
     @Autowired
     private ContatoRepository contatoRepository;
 
@@ -29,6 +31,8 @@ public class ContatosService {
         Contato contato = new Contato(data);
 
         contatoRepository.save(contato);
+
+        organizarPrimeiroUltimoNome();
 
         return contato;
     }
@@ -45,6 +49,8 @@ public class ContatosService {
         Contato contato = contatoRepository.findById(id).orElseThrow(() -> new ContatoNaoEncontradoException());
 
         contatoRepository.delete(contato);
+
+        organizarPrimeiroUltimoNome();
 
         return contato;
     }
@@ -63,6 +69,19 @@ public class ContatosService {
 
     public List<ContatoResponseDTO> getAniversariantes() {
         Integer mesAtual = LocalDate.now().getMonthValue();
-        return getTodosContatos().stream().filter(e -> e.dataNascimento().getMonthValue() == mesAtual).toList();
+        List<ContatoResponseDTO> listaAniversariantes = getTodosContatos().stream().filter(e -> e.dataNascimento().getMonthValue() == mesAtual).toList();
+
+        FileOperations.setProperties("test", "aniversariantes", String.valueOf(listaAniversariantes.stream().count()));
+
+        return listaAniversariantes;
+    }
+
+    public void organizarPrimeiroUltimoNome() {
+        
+        String primeiroNome = getTodosContatos().getFirst().nome();
+        FileOperations.setProperties("test", "primeiro-nome", primeiroNome);
+        
+        String ultimoNome = getTodosContatos().getLast().nome();
+        FileOperations.setProperties("test", "ultimo-nome", ultimoNome);
     }
 }

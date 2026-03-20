@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios, { type AxiosPromise } from "axios";
+import axios from "axios";
 import type { ContatoProps } from "../interface/ContatoProps";
 
 const API_URL = "http://localhost:8080";
